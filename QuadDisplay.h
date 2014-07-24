@@ -13,6 +13,8 @@
 #ifndef QUAD_DISPLAY
 #define QUAD_DISPLAY
 
+#include <inttypes.h> 
+
 /*
 
     ___7___
@@ -24,7 +26,7 @@
   |         |
  3|         |5
    \___4___/
-
+               *0
  */
 
 #define QD_NONE  0b11111111
