@@ -38,6 +38,9 @@ void loop()
     // с заданной точностью, например 2 знака после запятой
     displayFloat(PIN, -1.23, 2);
 
+    // можно показывать температуру в °C
+    displayTemperatureC(PIN, -5);
+
     // можно показывать нехитрый текст (on/off, например) или
     // произвольную графику
     displayDigits(PIN, QD_O, QD_f, QD_f, QD_NONE); // off

@@ -78,5 +78,6 @@ void displayFloat(uint8_t pin, float val, uint8_t precision, bool padZeros=false
 void displayDigits(uint8_t pin, uint8_t digit1, uint8_t digit2, uint8_t digit3, uint8_t digit4);
 void displayClear(uint8_t pin);
 
+void displayTemperatureC(uint8_t pin, int val, bool padZeros=false);
 
 #endif
