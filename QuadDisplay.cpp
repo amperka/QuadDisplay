@@ -97,26 +97,32 @@ void displayClear(uint8_t pin)
 
 void displayInt(uint8_t pin, int val, bool padZeros, uint8_t dots)
 {
-    bool negative = val < 0;
-    val = abs(val);
     uint8_t digits[4] = {0xff, 0xff, 0xff, 0xff};
 
-    int8_t i;
-    for (i = 4; i--; ) {
-        uint8_t digit = val % 10;
-        digits[i] = (val || padZeros) ? numerals[digit] : 0xff;
+    if (!padZeros && !val)
+        digits[3] = numerals[0];
+    else {
+        bool negative = val < 0;
+        val = abs(val);
 
-        val /= 10;
-        if (!val && !padZeros)
-            break;
-    }
 
-    if (negative)
-        digits[max(0, i-1)] = QD_MINUS;
+        int8_t i;
+        for (i = 4; i--; ) {
+            uint8_t digit = val % 10;
+            digits[i] = (val || padZeros) ? numerals[digit] : 0xff;
 
-    for (i = 4; i--; ) {
-        if (dots & (1 << i))
-            digits[4 - i] &= QD_DOT;
+            val /= 10;
+            if (!val && !padZeros)
+                break;
+        }
+
+        if (negative)
+            digits[max(0, i-1)] = QD_MINUS;
+
+        for (i = 4; i--; ) {
+            if (dots & (1 << i))
+                digits[4 - i] &= QD_DOT;
+        }
     }
 
     displayDigits(pin, digits[0], digits[1], digits[2], digits[3]);
@@ -136,22 +142,27 @@ void displayFloat(uint8_t pin, float val, uint8_t precision, bool padZeros)
 
 void displayTemperatureC(uint8_t pin, int val, bool padZeros)
 {
-    bool negative = val < 0;
-    val = abs(val);
+
     uint8_t digits[4] = {0xff, 0xff, QD_DEGREE, QD_C};
+    
+    if (!padZeros && !val)
+        digits[1] = numerals[0];
+    else {
+        bool negative = val < 0;
+        val = abs(val);
 
-    int8_t i;
-    for (i = 2; i--; ) {
-        uint8_t digit = val % 10;
-        digits[i] = (val || padZeros) ? numerals[digit] : 0xff;
+        int8_t i;
+        for (i = 2; i--; ) {
+            uint8_t digit = val % 10;
+            digits[i] = (val || padZeros) ? numerals[digit] : 0xff;
 
-        val /= 10;
-        if (!val && !padZeros)
-            break;
+            val /= 10;
+            if (!val && !padZeros)
+                break;
+        }
+
+        if (negative)
+            digits[max(0, i-1)] = QD_MINUS;
     }
-
-    if (negative)
-        digits[max(0, i-1)] = QD_MINUS;
-
     displayDigits(pin, digits[0], digits[1], digits[2], digits[3]);
 }
