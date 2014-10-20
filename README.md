@@ -1,12 +1,19 @@
-Библиотека для Arduino позволяет управлять [четырёхразрядным модулем-индикатором](http://amperka.ru/product/troyka-quad-display)
-от Амперки.
+QuadDisplay
+===========
+
+Библиотека для Arduino, позволяющая управлять [четырёхразрядным модулем-индикатором](http://amperka.ru/product/troyka-quad-display)
+от [Амперки](http://amperka.ru/).
 
 Установка
 =========
 
-Скопируйте директорию QuadDisplay в ''$sketchbook/libraries'', где ''$sketchbook'' — ваша директория со скетчами.
+Скачайте последний [релиз библиотеки](https://github.com/amperka/QuadDisplay/releases/download/1.0.0/QuadDisplay-1.0.0.zip):
 
-После этого перезагрузите Arduino IDE.
+<a href="https://github.com/amperka/QuadDisplay/releases/download/1.0.0/QuadDisplay-1.0.0.zip"><img src="https://raw.githubusercontent.com/amperka/QuadDisplay/master/download.png" alt="Кнопка загрузки"/></a>
+
+В Arduino IDE выберите пункт меню «Скетч» → «Импортировать библиотеку» →
+«Добавить библиотеку…». В появившемся окне выберите скачаный архив с
+библиотекой. Установка завершена.
 
 Пример использования
 ====================
