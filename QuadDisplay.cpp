@@ -72,7 +72,7 @@ static void sendByte(uint8_t pin, byte data, byte n = 8)
 static void latch(uint8_t pin)
 {
     MACRO_DIGITAL_WRITE(pin, LOW);
-    delayMicroseconds(100);
+    delayMicroseconds(60);
     MACRO_DIGITAL_WRITE(pin, HIGH);
     delayMicroseconds(300);
 }
