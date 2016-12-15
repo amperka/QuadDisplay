@@ -33,8 +33,9 @@
 #define QD_DOT   0b11111110
 #define QD_MINUS 0b11111101
 
-#define QD_UNDERSCORE 0b11101111
-#define QD_DEGREE     0b00111001
+#define QD_UNDERSCORE 		0b11101111
+#define QD_DEGREE     		0b00111001
+#define QD_UNDER_DEGREE     0b11000101
 
 #define QD_0 0b00000011
 #define QD_1 0b10011111
@@ -78,6 +79,8 @@ void displayFloat(uint8_t pin, float val, uint8_t precision, bool padZeros=false
 void displayDigits(uint8_t pin, uint8_t digit1, uint8_t digit2, uint8_t digit3, uint8_t digit4);
 void displayClear(uint8_t pin);
 
+void displayTemperature(uint8_t pin, int val, bool padZeros=false);
 void displayTemperatureC(uint8_t pin, int val, bool padZeros=false);
+void displayHumidity(uint8_t pin, int val, bool padZeros=false);
 
 #endif

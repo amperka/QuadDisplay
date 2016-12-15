@@ -72,7 +72,7 @@ static void sendByte(uint8_t pin, byte data, byte n = 8)
 static void latch(uint8_t pin)
 {
     MACRO_DIGITAL_WRITE(pin, LOW);
-    delayMicroseconds(60);
+    delayMicroseconds(100);
     MACRO_DIGITAL_WRITE(pin, HIGH);
     delayMicroseconds(300);
 }
@@ -144,6 +144,60 @@ void displayTemperatureC(uint8_t pin, int val, bool padZeros)
 {
 
     uint8_t digits[4] = {0xff, 0xff, QD_DEGREE, QD_C};
+    
+    if (!padZeros && !val)
+        digits[1] = numerals[0];
+    else {
+        bool negative = val < 0;
+        val = abs(val);
+
+        int8_t i;
+        for (i = 2; i--; ) {
+            uint8_t digit = val % 10;
+            digits[i] = (val || padZeros) ? numerals[digit] : 0xff;
+
+            val /= 10;
+            if (!val && !padZeros)
+                break;
+        }
+
+        if (negative)
+            digits[max(0, i-1)] = QD_MINUS;
+    }
+    displayDigits(pin, digits[0], digits[1], digits[2], digits[3]);
+}
+
+void displayTemperature(uint8_t pin, int val, bool padZeros)
+{
+
+    uint8_t digits[4] = {0xff, 0xff, 0xff, QD_DEGREE};
+    
+    if (!padZeros && !val)
+        digits[1] = numerals[0];
+    else {
+        bool negative = val < 0;
+        val = abs(val);
+
+        int8_t i;
+        for (i = 3; i--; ) {
+            uint8_t digit = val % 10;
+            digits[i] = (val || padZeros) ? numerals[digit] : 0xff;
+
+            val /= 10;
+            if (!val && !padZeros)
+                break;
+        }
+
+        if (negative)
+            digits[max(0, i-1)] = QD_MINUS;
+    }
+    displayDigits(pin, digits[0], digits[1], digits[2], digits[3]);
+}
+
+void displayHumidity(uint8_t pin, int val, bool padZeros)
+{
+
+    uint8_t digits[4] = {0xff, 0xff, QD_DEGREE, QD_UNDER_DEGREE};
     
     if (!padZeros && !val)
         digits[1] = numerals[0];
