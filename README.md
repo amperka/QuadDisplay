@@ -7,10 +7,6 @@ QuadDisplay
 Установка
 =========
 
-Скачайте последний [релиз библиотеки](https://github.com/amperka/QuadDisplay/releases/download/1.0.0/QuadDisplay-1.0.0.zip):
-
-<a href="https://github.com/amperka/QuadDisplay/releases/download/1.0.0/QuadDisplay-1.0.0.zip"><img src="https://raw.githubusercontent.com/amperka/QuadDisplay/master/download.png" alt="Кнопка загрузки"/></a>
-
 В Arduino IDE выберите пункт меню «Скетч» → «Импортировать библиотеку» →
 «Добавить библиотеку…». В появившемся окне выберите скачаный архив с
 библиотекой. Установка завершена.
