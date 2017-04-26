@@ -11,6 +11,7 @@ displayClear	KEYWORD2
 displayHumidity	KEYWORD2
 displayTemperature	KEYWORD2
 displayTemperatureC	KEYWORD2
+displayTime		KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

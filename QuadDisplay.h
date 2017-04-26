@@ -82,5 +82,6 @@ void displayClear(uint8_t pin);
 void displayTemperature(uint8_t pin, int val, bool padZeros=false);
 void displayTemperatureC(uint8_t pin, int val, bool padZeros=false);
 void displayHumidity(uint8_t pin, int val, bool padZeros=false);
+void displayTime(uint8_t pin, int hour, int minute);
 
 #endif

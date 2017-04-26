@@ -99,30 +99,26 @@ void displayInt(uint8_t pin, int val, bool padZeros, uint8_t dots)
 {
     uint8_t digits[4] = {0xff, 0xff, 0xff, 0xff};
 
-    if (!padZeros && !val)
+    if (!padZeros && !val) {
         digits[3] = numerals[0];
-    else {
+    } else {
         bool negative = val < 0;
         val = abs(val);
-
 
         int8_t i;
         for (i = 4; i--; ) {
             uint8_t digit = val % 10;
             digits[i] = (val || padZeros) ? numerals[digit] : 0xff;
-
             val /= 10;
+
             if (!val && !padZeros)
                 break;
         }
-
         if (negative)
-            digits[max(0, i-1)] = QD_MINUS;
+            digits[i - 1] = QD_MINUS;
 
-        for (i = 4; i--; ) {
-            if (dots & (1 << i))
-                digits[4 - i] &= QD_DOT;
-        }
+        digits[4 - dots] &= QD_DOT;
+
     }
 
     displayDigits(pin, digits[0], digits[1], digits[2], digits[3]);
@@ -130,13 +126,12 @@ void displayInt(uint8_t pin, int val, bool padZeros, uint8_t dots)
 
 void displayFloat(uint8_t pin, float val, uint8_t precision, bool padZeros)
 {
-    uint8_t dot = 0x1;
+    uint8_t dot = 0;
     while (precision) {
         val *= 10;
         --precision;
-        dot <<= 1;
+        dot++;
     }
-
     displayInt(pin, (int)val, padZeros, dot);
 }
 
@@ -218,5 +213,50 @@ void displayHumidity(uint8_t pin, int val, bool padZeros)
         if (negative)
             digits[max(0, i-1)] = QD_MINUS;
     }
+    displayDigits(pin, digits[0], digits[1], digits[2], digits[3]);
+}
+
+void displayTime(uint8_t pin, int hour, int minute)
+{
+    uint8_t digits[4] = {0xff, 0xff, 0xff, 0xff};
+
+    if (!hour) {
+        digits[0] = numerals[0];
+        digits[1] = numerals[0];
+    } else {
+        if (hour < 10) {
+            digits[0] = numerals[0];
+        }
+        int8_t i;
+        for (i = 2; i--; ) {
+            uint8_t digit = hour % 10;
+            digits[i] = hour ? numerals[digit] : 0xff;
+
+            hour /= 10;
+            if (!hour)
+                break;
+        }
+    }
+
+    if (!minute) {
+        digits[2] = numerals[0];
+        digits[3] = numerals[0];
+    } else {
+        if (minute < 10) {
+            digits[2] = numerals[0];
+        }
+        int8_t i;
+       	for (i = 4; i--; ) {
+            uint8_t digit = minute % 10;
+            digits[i] = minute ? numerals[digit] : 0xff;
+
+            minute /= 10;
+            if (!minute)
+                break;
+        }
+    }
+	
+	digits[2] &= QD_DOT;
+
     displayDigits(pin, digits[0], digits[1], digits[2], digits[3]);
 }
