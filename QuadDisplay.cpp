@@ -6,7 +6,7 @@
 #include "pins_arduino.h"
 
 
-#ifndef _VARIANT_ARDUINO_DUE_X_
+#ifdef __AVR_ATmega32U4__
 
 #define MACRO_DIGITAL_WRITE(a,b) (fastDigitalWrite(a,b))
 
