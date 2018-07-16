@@ -11,18 +11,18 @@ displayClear	KEYWORD2
 displayHumidity	KEYWORD2
 displayTemperature	KEYWORD2
 displayTemperatureC	KEYWORD2
-displayTime		KEYWORD2
+displayTime	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
 #######################################
 
-QD_NONE		LITERAL1
-QD_DOT		LITERAL1
+QD_NONE	LITERAL1
+QD_DOT	LITERAL1
 QD_MINUS	LITERAL1
 
 QD_UNDERSCORE	LITERAL1
-QD_DEGREE		LITERAL1
+QD_DEGREE	LITERAL1
 QD_UNDER_DEGREE	LITERAL1
 
 QD_0	LITERAL1
